@@ -11,101 +11,43 @@ class App extends Component {
 		super(props);
 		this.state = {
 			unselected: [],
-			selected: [{first: "ahsdfaks"},{first: "ooooooo"}],
-			test: [{first: "Wells", last: "Maruszewski", email: "wmaruszewski9@illinois.edu"}]
+			selected: [],
 		};
 		this.addToSelected = this.addToSelected.bind(this);
 		this.returnSelected = this.returnSelected.bind(this);
 	}
 
-	
 	addToSelected = (id) => {
-			let array = []; 
-			this.state.selected.map(user => {
+		let array = []; 
+		this.state.selected.map(user => {
+			array.push({
+				first: user.first
+			})
+		})
+		Content.map(user => { 
+			if(id === user.id) {
 				array.push({
-					first: user.first
-				})
-			})
-			Content.map(user => { 
-				if(id === user.id) {
-					array.push({
-						key: id,
-						first: user.first,
-						last: user.last,
-						email: user.email,
-						image: user.image
-					});
-				}
-			})
-			return (
-			// Content.map(user => { 
-			// 	if(id === user.id) {
-					// this.state.selected.push({
-					// 	key: id,
-					// 	first: user.first,
-					// 	last: user.last,
-					// 	email: user.email,
-					// 	image: user.image
-					// });
-					// this.setState({
-					// 	selected: {
-					// 		key: id,
-					// 		first: user.first,
-					// 		last: user.last,
-					// 		email: user.email,
-					// 		image: user.image
-					// 	}
-					// });
-					// this.setState({
-					// 	selected: 
-					// 	Content.map((user) => ({
-					// 		key: id,
-					// 		first: user.first,
-					// 		last: user.last,
-					// 		email: user.email,
-					// 		image: user.image
-					// 	}))
-					// })
-
-					// this.setState((prevState, props) => ({
-					// 	counter: prevState.counter + props.increment
-					//   }));
-
-					// this.setState((prevState, props) => ({
-					// 	selected: 
-					// 		array.map((user) => (
-					// 			{
-					// 			key: id,
-					// 			first: user.first,
-					// 			last: user.last,
-					// 			email: user.email,
-					// 			image: user.image
-					// 			}
-					// 		))
-					// }))
-
-					this.setState((prevState) => ({
-						selected:
-							array.map((user) => (
-								{
-								key: id,
-								first: user.first,
-								last: user.last,
-								email: user.email,
-								image: user.image
-								}
-							))
-					}))
-
-					// this.setState((prevState) => {
-					// 	return { 
-					// 	  items: prevState.items.concat(newItem) 
-					// 	};
-					//   });
-
-				// }
-				// console.log(this.state.selected);
-			// }
+					key: id,
+					first: user.first,
+					last: user.last,
+					email: user.email,
+					image: user.image
+				});
+			}
+		})
+		return (
+			this.setState((prevState) => ({
+				selected:
+				array.map((user) => (
+					{
+					key: id,
+					first: user.first,
+					last: user.last,
+					email: user.email,
+					image: user.image
+					}
+				))
+			}))
 		)
 	}
 
@@ -130,7 +72,6 @@ class App extends Component {
 
 	returnSelected = () => {
 		const { selected } = this.state; 
-		console.log("returnSelected function call");
 		return (
 			selected.map(value => {
 				return (
@@ -156,19 +97,7 @@ class App extends Component {
 						<h2>Selected</h2>
 					</li>
 					<li>
-						{/* INSERT SELECTED LIST HERE */}
-						{/* <UserList entries={this.state.selected}/> */}
 						{this.returnSelected()}
-						{/* {this.state.test.map(value => {
-							return (
-								value.first
-							);
-						})}	 */}
-						{/* {this.state.selected.map(value => {
-							return (
-								value.first
-							);
-						})}	 */}
 					</li>
 				</ul>
 			</div>
