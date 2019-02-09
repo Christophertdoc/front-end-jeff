@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Content from './content/users';
-import UserList from './components/UserList';
+import User from './components/User';
 
 // https://www.kirupa.com/react/simple_todo_app_react.htm
 
@@ -11,31 +11,62 @@ class App extends Component {
 		super(props);
 		this.state = {
 			unselected: 
-			Content.map((user) => (
-			{
+			Content.map((user) => ({
 				key: user.id,
 				first: user.first,
 				last: user.last,
 				email: user.email,
 				image: user.image
-				}
-			)),
+			})),
 			selected: [],
 		};
-		this.addToSelected = this.addToSelected.bind(this);
-		this.returnSelected = this.returnSelected.bind(this);
-		this.unselectedList = this.unselectedList.bind(this);
+	}
+
+	removeFromUnselected = (chosenKey) => {
+		console.log(chosenKey)
+		const array = [];
+		this.state.unselected.map(user => {
+			if (chosenKey !== user.key) {
+				array.push({
+					key: user.key,
+					first: user.first,
+					last: user.last,
+					email: user.email,
+					image: user.image
+				})
+			} else {
+
+			}
+		})
+		return (
+			this.setState(() => ({
+				unselected:
+				array.map((user) => ({
+					key: user.key,
+					first: user.first,
+					last: user.last,
+					email: user.email,
+					image: user.image
+				}))
+			}))
+		)
 	}
 
 	addToSelected = (key) => {
-		let array = []; 
+		const array = []; 
+		let chosenKey = null;
 		this.state.selected.map(user => {
 			array.push({
-				first: user.first
+				key: key,
+				first: user.first,
+				last: user.last,
+				email: user.email,
+				image: user.image
 			})
 		})
 		Content.map(user => { 
 			if(key === user.id) {
+				chosenKey = key;
 				array.push({
 					key: key,
 					first: user.first,
@@ -45,6 +76,7 @@ class App extends Component {
 				});
 			}
 		})
+		this.removeFromUnselected(chosenKey);
 		return (
 			this.setState(() => ({
 				selected:
@@ -61,33 +93,28 @@ class App extends Component {
 		)
 	}
 
-	unselectedList = () => {
+	returnUnselected = () => {
 		const { unselected } = this.state; 
-		console.log(unselected)
 		return (
 			unselected.map(user => {
 				return (
-					<ul key={user.id}>
-						<li><img src={user.image} alt={`${user.first} icon`} /></li>
-						<li>{user.first} {user.last}</li>
-						<li>{user.email}</li>
-						<li>
-							<button onClick={(() => this.addToSelected(user.key))}>
-								Select
-							</button>
-						</li>
-					</ul>
+					<div>
+						<User key={user.id} first={user.first} last={user.last} email={user.email} image={user.image} />
+						<button onClick={(() => this.addToSelected(user.key))}>
+							Select
+						</button>
+					</div>
 				);
 			})
-		)
+		) 
 	}
 
 	returnSelected = () => {
 		const { selected } = this.state; 
 		return (
-			selected.map(value => {
+			selected.map(user => {
 				return (
-					value.first
+					<User key={user.id} first={user.first} last={user.last} email={user.email} image={user.image} />
 				);
 			})
 		)
@@ -101,7 +128,7 @@ class App extends Component {
 						<h2>Unselected</h2>
 					</li>
 					<li>
-						{this.unselectedList()}
+						{this.returnUnselected()}
 					</li>
 				</ul>
 				<ul>
