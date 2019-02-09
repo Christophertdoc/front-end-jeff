@@ -11,7 +11,7 @@ class App extends Component {
 		super(props);
 		this.state = {
 			unselected: [],
-			selected: [],
+			selected: [{first: "ahsdfaks"},{first: "ooooooo"}],
 			test: [{first: "Wells", last: "Maruszewski", email: "wmaruszewski9@illinois.edu"}]
 		};
 		this.addToSelected = this.addToSelected.bind(this);
@@ -21,6 +21,11 @@ class App extends Component {
 	
 	addToSelected = (id) => {
 			let array = []; 
+			this.state.selected.map(user => {
+				array.push({
+					first: user.first
+				})
+			})
 			Content.map(user => { 
 				if(id === user.id) {
 					array.push({
@@ -66,18 +71,38 @@ class App extends Component {
 					// 	counter: prevState.counter + props.increment
 					//   }));
 
-					this.setState({
+					// this.setState((prevState, props) => ({
+					// 	selected: 
+					// 		array.map((user) => (
+					// 			{
+					// 			key: id,
+					// 			first: user.first,
+					// 			last: user.last,
+					// 			email: user.email,
+					// 			image: user.image
+					// 			}
+					// 		))
+					// }))
+
+					this.setState((prevState) => ({
 						selected:
-						array.map((user) => (
-							{
-							key: id,
-							first: user.first,
-							last: user.last,
-							email: user.email,
-							image: user.image
-							}
-						))
-					})
+							array.map((user) => (
+								{
+								key: id,
+								first: user.first,
+								last: user.last,
+								email: user.email,
+								image: user.image
+								}
+							))
+					}))
+
+					// this.setState((prevState) => {
+					// 	return { 
+					// 	  items: prevState.items.concat(newItem) 
+					// 	};
+					//   });
+
 				// }
 				// console.log(this.state.selected);
 			// }
