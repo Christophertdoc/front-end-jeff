@@ -18,9 +18,21 @@ class App extends Component {
 		this.returnSelected = this.returnSelected.bind(this);
 	}
 
+	
 	addToSelected = (id) => {
-		// console.log(this.returnSelected());
-		return (
+			let array = []; 
+			Content.map(user => { 
+				if(id === user.id) {
+					array.push({
+						key: id,
+						first: user.first,
+						last: user.last,
+						email: user.email,
+						image: user.image
+					});
+				}
+			})
+			return (
 			// Content.map(user => { 
 			// 	if(id === user.id) {
 					// this.state.selected.push({
@@ -39,15 +51,32 @@ class App extends Component {
 					// 		image: user.image
 					// 	}
 					// });
+					// this.setState({
+					// 	selected: 
+					// 	Content.map((user) => ({
+					// 		key: id,
+					// 		first: user.first,
+					// 		last: user.last,
+					// 		email: user.email,
+					// 		image: user.image
+					// 	}))
+					// })
+
+					// this.setState((prevState, props) => ({
+					// 	counter: prevState.counter + props.increment
+					//   }));
+
 					this.setState({
-						selected: 
-						Content.map((user) => ({
+						selected:
+						array.map((user) => (
+							{
 							key: id,
 							first: user.first,
 							last: user.last,
 							email: user.email,
 							image: user.image
-						}))
+							}
+						))
 					})
 				// }
 				// console.log(this.state.selected);
