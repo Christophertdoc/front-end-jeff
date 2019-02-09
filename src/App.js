@@ -14,10 +14,22 @@ class App extends Component {
 	}
 
 	addToSelected = (id) => {
-		
-		//const selectedArray = this.state.items;
 		console.log(id);
-	}
+		return (
+			Content.map(user => { 
+				if(id === user.id) {
+					this.state.selected.push({
+						key: id,
+						first: user.first,
+						last: user.last,
+						email: user.email,
+						image: user.image
+					});
+				}
+				console.log(this.state.selected);
+			}
+		)
+	)}
 
 	unselectedList = () => {
 		return (
@@ -49,8 +61,10 @@ class App extends Component {
 						{this.unselectedList()}
 					</li>
 				</ul>
-				
 				<h2>Selected</h2>
+					{this.state.selected.map((user) => (
+						<p>{user.key}</p>
+					))}
 			</div>
 		);
 	}
