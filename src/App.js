@@ -10,14 +10,24 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			unselected: [],
+			unselected: 
+			Content.map((user) => (
+			{
+				key: user.id,
+				first: user.first,
+				last: user.last,
+				email: user.email,
+				image: user.image
+				}
+			)),
 			selected: [],
 		};
 		this.addToSelected = this.addToSelected.bind(this);
 		this.returnSelected = this.returnSelected.bind(this);
+		this.unselectedList = this.unselectedList.bind(this);
 	}
 
-	addToSelected = (id) => {
+	addToSelected = (key) => {
 		let array = []; 
 		this.state.selected.map(user => {
 			array.push({
@@ -25,9 +35,9 @@ class App extends Component {
 			})
 		})
 		Content.map(user => { 
-			if(id === user.id) {
+			if(key === user.id) {
 				array.push({
-					key: id,
+					key: key,
 					first: user.first,
 					last: user.last,
 					email: user.email,
@@ -36,11 +46,11 @@ class App extends Component {
 			}
 		})
 		return (
-			this.setState((prevState) => ({
+			this.setState(() => ({
 				selected:
 				array.map((user) => (
 					{
-					key: id,
+					key: key,
 					first: user.first,
 					last: user.last,
 					email: user.email,
@@ -52,15 +62,17 @@ class App extends Component {
 	}
 
 	unselectedList = () => {
+		const { unselected } = this.state; 
+		console.log(unselected)
 		return (
-			Content.map(user => {
+			unselected.map(user => {
 				return (
 					<ul key={user.id}>
 						<li><img src={user.image} alt={`${user.first} icon`} /></li>
 						<li>{user.first} {user.last}</li>
 						<li>{user.email}</li>
 						<li>
-							<button onClick={(() => this.addToSelected(user.id))}>
+							<button onClick={(() => this.addToSelected(user.key))}>
 								Select
 							</button>
 						</li>
