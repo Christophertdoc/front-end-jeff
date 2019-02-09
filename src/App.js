@@ -4,11 +4,35 @@ import Content from './content/users';
 
 class App extends Component {
 
-	userList = () => {
+	constructor(props) {
+		super(props);
+		this.state = {
+			unselected: [],
+		  	selected: []
+		};
+		this.addToSelected = this.addToSelected.bind(this);
+	}
+
+	addToSelected = (id) => {
+		
+		//const selectedArray = this.state.items;
+		console.log(id);
+	}
+
+	unselectedList = () => {
 		return (
 			Content.map(user => {
 				return (
-					<li>{user.first}</li>
+					<ul key={user.id}>
+						<li><img src={user.image} alt={`${user.first} icon`} /></li>
+						<li>{user.first} {user.last}</li>
+						<li>{user.email}</li>
+						<li>
+							<button onClick={(() => this.addToSelected(user.id))}>
+								Select
+							</button>
+						</li>
+					</ul>
 				);
 			})
 		)
@@ -17,7 +41,16 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				{this.userList()}
+				<ul>
+					<li>
+						<h2>Unselected</h2>
+					</li>
+					<li>
+						{this.unselectedList()}
+					</li>
+				</ul>
+				
+				<h2>Selected</h2>
 			</div>
 		);
 	}
