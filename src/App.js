@@ -128,7 +128,7 @@ class App extends Component {
 		let chosenKey = null;
 		this.state.unselected.map(user => {
 			array.push({
-				key: key,
+				key: user.key,
 				first: user.first,
 				last: user.last,
 				email: user.email,
@@ -153,7 +153,7 @@ class App extends Component {
 				unselected:
 				array.map((user) => (
 					{
-					key: key,
+					key: user.key,
 					first: user.first,
 					last: user.last,
 					email: user.email,
