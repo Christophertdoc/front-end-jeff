@@ -200,7 +200,21 @@ class App extends Component {
 	}
 
 	sort(event) {
-		this.setState({value: event.target.value});
+		let sortBy = event.target.value
+		this.setState({value: sortBy});
+		if (sortBy === "firstName") {
+			this.setState(() => ({
+				unselected:
+				this.state.unselected.sort(function(a, b){
+					var nameA=a.first.toLowerCase(), nameB=b.first.toLowerCase()
+					if (nameA < nameB) 
+						return -1 
+					if (nameA > nameB)
+						return 1
+					return 0 
+				})
+			}))
+		}
 	}
 
 
