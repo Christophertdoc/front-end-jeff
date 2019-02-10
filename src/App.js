@@ -23,7 +23,6 @@ class App extends Component {
 	}
 
 	removeFromUnselected = (chosenKey) => {
-		console.log(chosenKey)
 		const array = [];
 		this.state.unselected.map(user => {
 			if (chosenKey !== user.key) {
@@ -111,7 +110,7 @@ class App extends Component {
 		})
 		return (
 			this.setState(() => ({
-				Selected:
+				selected:
 				array.map((user) => ({
 					key: user.key,
 					first: user.first,
@@ -147,7 +146,7 @@ class App extends Component {
 				});
 			}
 		})
-		// this.removeFromSelected(chosenKey);
+		this.removeFromSelected(chosenKey);
 		return (
 			this.setState(() => ({
 				unselected:
