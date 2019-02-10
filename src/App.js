@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Content from './content/users';
 import User from './components/User';
 
-// https://www.kirupa.com/react/simple_todo_app_react.htm
-
 
 class App extends Component {
 
@@ -199,24 +197,32 @@ class App extends Component {
 		)
 	}
 
-	sort(event) {
-		let sortBy = event.target.value
-		this.setState({value: sortBy});
-		if (sortBy === "firstName") {
-			this.setState(() => ({
-				unselected:
-				this.state.unselected.sort(function(a, b){
+	sortSection = (val, sortBy) => {
+		this.setState(() => ({
+			[val]:
+			this.state[val].sort(function(a, b){
+				if (sortBy === "firstName") {
 					var nameA=a.first.toLowerCase(), nameB=b.first.toLowerCase()
-					if (nameA < nameB) 
-						return -1 
-					if (nameA > nameB)
-						return 1
-					return 0 
-				})
-			}))
-		}
+				} else if(sortBy === "lastName") {
+					var nameA=a.last.toLowerCase(), nameB=b.last.toLowerCase()
+				}
+				if (nameA < nameB) 
+					return -1 
+				if (nameA > nameB)
+					return 1
+				return 0 
+			})
+		}))
 	}
 
+	sort(event) {
+		let sortBy = event.target.value
+		let unselected = "unselected";
+		let selected = "selected";
+		this.setState({value: sortBy});
+		this.sortSection(unselected, sortBy);
+		this.sortSection(selected, sortBy);
+	}
 
 	render() {
 		return (
