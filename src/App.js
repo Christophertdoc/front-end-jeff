@@ -19,7 +19,9 @@ class App extends Component {
 				image: user.image
 			})),
 			selected: [],
+			value: "none"
 		};
+		this.sort = this.sort.bind(this);
 	}
 
 	removeFromUnselected = (chosenKey) => {
@@ -197,10 +199,23 @@ class App extends Component {
 		)
 	}
 
+	sort(event) {
+		this.setState({value: event.target.value});
+	}
+
+
 	render() {
 		return (
 			<div>
 				<ul>
+					<li>
+						<select onChange={this.sort} value={this.state.value}>
+							<option value="sortBy">Sort By:</option>
+							<option value="firstName">First Name</option>
+							<option value="lastName">Last Name</option>
+						</select>
+						<p>Sorting by: {this.state.value}</p>
+					</li>
 					<li>
 						<h2>Unselected</h2>
 					</li>
