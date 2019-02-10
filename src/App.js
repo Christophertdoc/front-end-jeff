@@ -57,7 +57,7 @@ class App extends Component {
 		let chosenKey = null;
 		this.state.selected.map(user => {
 			array.push({
-				key: key,
+				key: user.key,
 				first: user.first,
 				last: user.last,
 				email: user.email,
@@ -93,6 +93,77 @@ class App extends Component {
 		)
 	}
 
+	removeFromSelected = (chosenKey) => {
+		console.log(chosenKey)
+		const array = [];
+		this.state.selected.map(user => {
+			if (chosenKey !== user.key) {
+				array.push({
+					key: user.key,
+					first: user.first,
+					last: user.last,
+					email: user.email,
+					image: user.image
+				})
+			} else {
+
+			}
+		})
+		return (
+			this.setState(() => ({
+				Selected:
+				array.map((user) => ({
+					key: user.key,
+					first: user.first,
+					last: user.last,
+					email: user.email,
+					image: user.image
+				}))
+			}))
+		)
+	}
+
+	addToUnselected = (key) => { 
+		const array = []; 
+		let chosenKey = null;
+		this.state.unselected.map(user => {
+			array.push({
+				key: key,
+				first: user.first,
+				last: user.last,
+				email: user.email,
+				image: user.image
+			})
+		})
+		Content.map(user => { 
+			if(key === user.id) {
+				chosenKey = key;
+				array.push({
+					key: key,
+					first: user.first,
+					last: user.last,
+					email: user.email,
+					image: user.image
+				});
+			}
+		})
+		// this.removeFromSelected(chosenKey);
+		return (
+			this.setState(() => ({
+				unselected:
+				array.map((user) => (
+					{
+					key: key,
+					first: user.first,
+					last: user.last,
+					email: user.email,
+					image: user.image
+					}
+				))
+			}))
+		)
+	}
+
 	returnUnselected = () => {
 		const { unselected } = this.state; 
 		return (
@@ -114,7 +185,12 @@ class App extends Component {
 		return (
 			selected.map(user => {
 				return (
-					<User key={user.id} first={user.first} last={user.last} email={user.email} image={user.image} />
+					<div>
+						<User key={user.key} first={user.first} last={user.last} email={user.email} image={user.image} />
+						<button onClick={(() => this.addToUnselected(user.key))}>
+							Remove
+						</button>
+					</div>
 				);
 			})
 		)
