@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Content from './content/users';
 import User from './components/User';
+import './index.scss';
 
 
 class App extends Component {

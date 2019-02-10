@@ -1,0 +1,37 @@
+@mixin small-mobile { 
+    @media (max-width: #{$mobile-width}) {
+        @content;
+    }
+} 
+@mixin mobile {
+    @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 1px}) {
+        @content;
+    } 
+}   
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$small-desktop-width - 1px}) {     
+        @content;
+    }
+} 
+@mixin small-desktop {
+    @media (min-width: #{$small-desktop-width}) and (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) and (max-width: #{$large-desktop-width}) {
+        @content;
+    }
+}
+@mixin large-desktop {
+    @media (min-width: #{$large-desktop-width}) {
+        @content;
+    }
+}
+@mixin alpha-attribute($attribute, $color, $background) {
+    $percent: alpha($color) * 100%;
+    $opaque: opacify($color, 1);
+    $solid-color: mix($opaque, $background, $percent);
+    #{$attribute}: $solid-color;
+    #{$attribute}: $color;
+}
