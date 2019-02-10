@@ -82,7 +82,7 @@ class App extends Component {
 				selected:
 				array.map((user) => (
 					{
-					key: key,
+					key: user.key,
 					first: user.first,
 					last: user.last,
 					email: user.email,
@@ -171,6 +171,7 @@ class App extends Component {
 				return (
 					<div>
 						<User key={user.id} first={user.first} last={user.last} email={user.email} image={user.image} />
+						{user.key}
 						<button onClick={(() => this.addToSelected(user.key))}>
 							Select
 						</button>
@@ -187,6 +188,7 @@ class App extends Component {
 				return (
 					<div>
 						<User key={user.key} first={user.first} last={user.last} email={user.email} image={user.image} />
+						{user.key}
 						<button onClick={(() => this.addToUnselected(user.key))}>
 							Remove
 						</button>
