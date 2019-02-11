@@ -227,16 +227,21 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-				<ul>
+			<div className="App">
+				<ul className="header">
+					<li>
+						<h1>User Sort / Select</h1>
+						<p>Go ahead. Select and sort those users! </p>
+					</li>
 					<li>
 						<select onChange={this.sort} value={this.state.value}>
-							<option value="sortBy">Sort By:</option>
-							<option value="firstName">First Name</option>
-							<option value="lastName">Last Name</option>
+							<option value="sortBy">Sort</option>
+							<option value="firstName">First Name (asc)</option>
+							<option value="lastName">Last Name (asc)</option>
 						</select>
-						<p>Sorting by: {this.state.value}</p>
 					</li>
+				</ul>
+				<ul>
 					<li>
 						<h2>Unselected</h2>
 					</li>
@@ -257,4 +262,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default App; 

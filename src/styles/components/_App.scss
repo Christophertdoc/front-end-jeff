@@ -1,0 +1,11 @@
+.App {
+    .header {
+        border-bottom: 2px solid $black;
+        p {
+            margin-bottom: 10px; 
+        }
+        select {
+            margin-bottom: 20px; 
+        }
+    }
+}
