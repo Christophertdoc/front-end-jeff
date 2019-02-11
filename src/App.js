@@ -171,9 +171,9 @@ class App extends Component {
 				return (
 					<div className="card">
 						<User key={user.id} first={user.first} last={user.last} email={user.email} image={user.image} />
-						<button onClick={(() => this.addToSelected(user.key))}>
+						<div className="button" onClick={(() => this.addToSelected(user.key))}>
 							Select
-						</button>
+						</div>
 					</div>
 				);
 			})
@@ -187,9 +187,9 @@ class App extends Component {
 				return (
 					<div className="card">
 						<User key={user.key} first={user.first} last={user.last} email={user.email} image={user.image} />
-						<button onClick={(() => this.addToUnselected(user.key))}>
+						<div className="button" onClick={(() => this.addToUnselected(user.key))}>
 							Remove
-						</button>
+						</div>
 					</div>
 				);
 			})
