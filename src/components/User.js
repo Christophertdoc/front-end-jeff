@@ -12,12 +12,14 @@ class User extends React.Component {
         } = this.props 
 
         return ( 
-            <ul key={key}>
+            <ul className="User" key={key}> 
                 <li><img src={image} alt={`${first} icon`} /></li>
-                <li>{key}</li>
-                <li>{first}</li> 
-                <li>{last}</li>
-                <li>{email}</li>
+                <li>
+                    <p>{first} {last}</p>
+                </li> 
+                <li>
+                    <p>{email}</p>
+                </li>
             </ul> 
         );
     }

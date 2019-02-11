@@ -169,9 +169,8 @@ class App extends Component {
 		return (
 			unselected.map(user => {
 				return (
-					<div>
+					<div className="card">
 						<User key={user.id} first={user.first} last={user.last} email={user.email} image={user.image} />
-						{user.key}
 						<button onClick={(() => this.addToSelected(user.key))}>
 							Select
 						</button>
@@ -186,9 +185,8 @@ class App extends Component {
 		return (
 			selected.map(user => {
 				return (
-					<div>
+					<div className="card">
 						<User key={user.key} first={user.first} last={user.last} email={user.email} image={user.image} />
-						{user.key}
 						<button onClick={(() => this.addToUnselected(user.key))}>
 							Remove
 						</button>
@@ -230,8 +228,8 @@ class App extends Component {
 			<div className="App">
 				<ul className="header">
 					<li>
-						<h1>User Sort / Select</h1>
-						<p>Go ahead. Select and sort those users! </p>
+						<h1>User Sort / Select</h1> 
+						<p>Go ahead. Select and sort those users! </p> 
 					</li>
 					<li>
 						<select onChange={this.sort} value={this.state.value}>
@@ -241,7 +239,7 @@ class App extends Component {
 						</select>
 					</li>
 				</ul>
-				<ul>
+				<ul className="unselected">
 					<li>
 						<h2>Unselected</h2>
 					</li>
@@ -249,7 +247,7 @@ class App extends Component {
 						{this.returnUnselected()}
 					</li>
 				</ul>
-				<ul>
+				<ul className="selected">
 					<li>
 						<h2>Selected</h2>
 					</li>
