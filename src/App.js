@@ -225,18 +225,20 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
+			<div className="App"> 
 				<ul className="header">
 					<li>
 						<h1>User Sort / Select</h1> 
 						<p>Go ahead. Select and sort those users! </p> 
 					</li>
 					<li>
-						<select onChange={this.sort} value={this.state.value}>
-							<option value="sortBy">Sort</option>
-							<option value="firstName">First Name (asc)</option>
-							<option value="lastName">Last Name (asc)</option>
-						</select>
+						<div className="styled-select slate">
+							<select onChange={this.sort} value={this.state.value}>
+								<option value="sortBy">Sort</option>
+								<option value="firstName">First Name (asc)</option>
+								<option value="lastName">Last Name (asc)</option>
+							</select>
+						</div>
 					</li>
 				</ul>
 				<ul className="unselected">

@@ -1,12 +1,16 @@
 .App {
     .header {
         border-bottom: 2px solid $black;
-        margin-bottom: 50px; 
+        margin-bottom: 30px; 
         p {
             margin-bottom: 10px; 
         } 
-        select {
+        .styled-select {
             margin-bottom: 20px; 
+        }
+        select {
+            outline: none;
+            font-family: $secondary-font !important; 
         }
     }
 
