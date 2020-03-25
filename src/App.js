@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaChevronCircleDown } from 'react-icons/fa';
 import Content from './content/users';
 import User from './components/User';
 import './index.scss';
@@ -9,7 +10,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			unselected: 
+			unselected:
 			Content.map((user) => ({
 				key: user.id,
 				first: user.first,
@@ -53,7 +54,7 @@ class App extends Component {
 	}
 
 	addToSelected = (key) => {
-		const array = []; 
+		const array = [];
 		let chosenKey = null;
 		this.state.selected.map(user => {
 			array.push({
@@ -64,7 +65,7 @@ class App extends Component {
 				image: user.image
 			})
 		})
-		Content.map(user => { 
+		Content.map(user => {
 			if(key === user.id) {
 				chosenKey = key;
 				array.push({
@@ -123,8 +124,8 @@ class App extends Component {
 		)
 	}
 
-	addToUnselected = (key) => { 
-		const array = []; 
+	addToUnselected = (key) => {
+		const array = [];
 		let chosenKey = null;
 		this.state.unselected.map(user => {
 			array.push({
@@ -135,7 +136,7 @@ class App extends Component {
 				image: user.image
 			})
 		})
-		Content.map(user => { 
+		Content.map(user => {
 			if(key === user.id) {
 				chosenKey = key;
 				array.push({
@@ -165,7 +166,7 @@ class App extends Component {
 	}
 
 	returnUnselected = () => {
-		const { unselected } = this.state; 
+		const { unselected } = this.state;
 		return (
 			unselected.map(user => {
 				return (
@@ -177,11 +178,11 @@ class App extends Component {
 					</div>
 				);
 			})
-		) 
+		)
 	}
 
 	returnSelected = () => {
-		const { selected } = this.state; 
+		const { selected } = this.state;
 		return (
 			selected.map(user => {
 				return (
@@ -205,11 +206,11 @@ class App extends Component {
 				} else if(sortBy === "lastName") {
 					var nameA=a.last.toLowerCase(), nameB=b.last.toLowerCase()
 				}
-				if (nameA < nameB) 
-					return -1 
+				if (nameA < nameB)
+					return -1
 				if (nameA > nameB)
 					return 1
-				return 0 
+				return 0
 			})
 		}))
 	}
@@ -225,16 +226,19 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App"> 
+			<div className="App">
 				<ul className="header">
 					<li>
-						<h1>User Sort / Select</h1> 
-						<p>Go ahead. Select and sort those users! </p> 
+						<h1>User Sort / Select</h1>
+						<p>Go ahead. Select and sort those users! </p>
 					</li>
 					<li>
-						<div className="styled-select slate">
+						<div className="styled-select">
 							<select onChange={this.sort} value={this.state.value}>
-								<option value="sortBy">Sort</option>
+								<option value="sortBy">
+										Sort
+										>
+								</option>
 								<option value="firstName">First Name (asc)</option>
 								<option value="lastName">Last Name (asc)</option>
 							</select>
@@ -262,4 +266,4 @@ class App extends Component {
 	}
 }
 
-export default App; 
+export default App;
